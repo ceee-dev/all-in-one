@@ -1,4 +1,15 @@
+
 https://cloud.domain.com:443 {
     header Strict-Transport-Security max-age=31536000;
     reverse_proxy localhost:11000
+}
+
+# To get a valid certificate for the AIO interface
+
+https://<your-nc-domain>:8443 {
+    reverse_proxy https://localhost:8080 {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
 }
